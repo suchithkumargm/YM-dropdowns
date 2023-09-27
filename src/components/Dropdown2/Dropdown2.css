@@ -1,0 +1,13 @@
+.dropdown__title{
+    padding: 0.5rem;
+    border: none;
+}
+
+.dropdown__item{
+    color: var(--primary-color);
+    background-color: var(--black-color);
+}
+
+ul.szh-menu{
+    padding: 0;
+}

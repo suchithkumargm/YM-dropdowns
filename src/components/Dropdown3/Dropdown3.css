@@ -1,0 +1,12 @@
+button.dropdown__title{
+    color: var(--primary-color);
+    border: none;
+}
+
+.dropdown__title:hover{
+    color: var(--primary-color);
+}
+
+.dropdown__item{
+    color: var(--primary-color);
+}
