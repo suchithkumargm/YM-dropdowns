@@ -4,32 +4,34 @@ import { Link } from 'react-router-dom';
 import dropdownIcon from '../../icons/dropdown.svg';
 import './Dropdown1.css';
 
-const Sidebar = () => {
-	const [isProjectTaskOpen, setIsProjectTaskOpen] = useState(false);
+const Dropdown1 = ({ title, items }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-	const toggleProjectTaskDropdown = () => {
-		setIsProjectTaskOpen(!isProjectTaskOpen);
-	};
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
-	// Function to log the clicked link to the console
-	const logClickedLink = (destination) => {
-		console.log('Link clicked :', destination);
-	};
+  // Function to log the clicked link to the console
+  const logClickedLink = (destination) => {
+    console.log('Link clicked:', destination);
+  };
 
-	return (
-		<div className="dropdown bg-black text-yellow" onClick={toggleProjectTaskDropdown}>
-			<span>
-				Dropdown <img src={dropdownIcon} alt='dropdown icon'/>
-			</span>
-			{isProjectTaskOpen && (
-				<div className='dropdown-content'>
-					<Link to='#' onClick={() => logClickedLink('/item 1')}>Item 1</Link>
-					<Link to='#' onClick={() => logClickedLink('/item 2')}>Item 2</Link>
-					<Link to='#' onClick={() => logClickedLink('/item 3')}>Item 3</Link>
-				</div>
-			)}
-		</div>
-	);
+  return (
+    <div className="dropdown bg-black text-yellow" onClick={toggleDropdown}>
+      <span>
+        {title} <img src={dropdownIcon} alt='dropdown icon'/>
+      </span>
+      {isDropdownOpen && (
+        <div className='dropdown-content'>
+          {items.map((item, index) => (
+            <Link key={index} to={item.link} onClick={() => logClickedLink(item.link)}>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default Sidebar;
+export default Dropdown1;
