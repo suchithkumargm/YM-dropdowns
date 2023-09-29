@@ -1,32 +1,35 @@
-import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
+import dropdownIcon from '../../icons/dropdown.svg';
 import './Dropdown1.css';
 
-const Dropdown1 = () => {
-  const handleItemClick = (itemName) => {
-    console.log(`Selected item: ${itemName}`);
-  };
+const Sidebar = () => {
+	const [isProjectTaskOpen, setIsProjectTaskOpen] = useState(false);
 
-  return (
-    <Dropdown onSelect={handleItemClick}>
-      <Dropdown.Toggle variant="dark" className='text-yellow bg-black dropdown__title' id="dropdown-basic">
-        <span className="text-yellow">Dropdown 1</span>
-      </Dropdown.Toggle>
+	const toggleProjectTaskDropdown = () => {
+		setIsProjectTaskOpen(!isProjectTaskOpen);
+	};
 
-      <Dropdown.Menu className='bg-black'>
-        <Dropdown.Item eventKey="Item 1" className='text-yellow'>
-          Item 1
-        </Dropdown.Item>
-        <Dropdown.Item eventKey="Item 2" className='text-yellow'>
-          Item 2
-        </Dropdown.Item>
-        <Dropdown.Item eventKey="Item 3" className='text-yellow'>
-          Item 3
-        </Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
-  );
+	// Function to log the clicked link to the console
+	const logClickedLink = (destination) => {
+		console.log('Link clicked :', destination);
+	};
+
+	return (
+		<div className="dropdown bg-black text-yellow" onClick={toggleProjectTaskDropdown}>
+			<span>
+				Dropdown <img src={dropdownIcon} alt='dropdown icon'/>
+			</span>
+			{isProjectTaskOpen && (
+				<div className='dropdown-content'>
+					<Link to='#' onClick={() => logClickedLink('/item 1')}>Item 1</Link>
+					<Link to='#' onClick={() => logClickedLink('/item 2')}>Item 2</Link>
+					<Link to='#' onClick={() => logClickedLink('/item 3')}>Item 3</Link>
+				</div>
+			)}
+		</div>
+	);
 };
 
-export default Dropdown1;
+export default Sidebar;
