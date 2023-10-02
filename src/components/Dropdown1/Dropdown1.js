@@ -1,10 +1,10 @@
+// Dropdown1.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import dropdownIcon from '../../icons/dropdown.svg';
 import './Dropdown1.css';
 
-const Dropdown1 = ({ title, items }) => {
+const Dropdown1 = ({ title, items, onItemSelected }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -13,7 +13,8 @@ const Dropdown1 = ({ title, items }) => {
 
   // Function to log the clicked link to the console
   const logClickedLink = (destination) => {
-    console.log('Link clicked:', destination);
+    onItemSelected(destination); // Notify App.js of the selected option
+    setIsDropdownOpen(false); // Close the dropdown after selection
   };
 
   return (
